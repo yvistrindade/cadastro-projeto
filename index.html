@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Planejamento de Instalação de Equipamentos - DTF</title>
+  <style>
+    /* Estilo para tela */
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #ffffff;
+      background-image: url('imagem/agabe.png');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      color: #333;
+      min-height: 100vh;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    h1 {
+      color: #d35400;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid #f0ad4e;
+      border-radius: 8px;
+      padding: 20px 30px;
+      max-width: 1000px;
+      width: 100%;
+      box-sizing: border-box;
+      overflow-y: auto;
+      max-height: 90vh;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 4px;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="date"],
+    input[type="tel"] {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 1rem;
+      box-sizing: border-box;
+    }
+
+    .checkbox-group,
+    .radio-group {
+      margin-top: 10px;
+    }
+
+    .section {
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid #f0ad4e;
+      padding: 15px;
+      margin-top: 20px;
+      border-radius: 8px;
+    }
+
+    .checkbox-group label {
+      display: inline-block;
+      margin-right: 15px;
+      font-weight: normal;
+    }
+
+    .full-width {
+      grid-column: span 2;
+    }
+
+    .section-title {
+      grid-column: span 2;
+      font-size: 1.2em;
+      font-weight: bold;
+      color: #d35400;
+      margin-bottom: 10px;
+    }
+
+    .installation-conditions-container {
+      display: flex;
+      gap: 30px;
+      margin-top: 15px;
+      flex-wrap: wrap;
+    }
+
+    .conditions-list {
+      flex: 1 1 55%;
+      min-width: 280px;
+    }
+
+    .notice-box {
+      flex: 1 1 40%;
+      background-color: #ffffff;
+      border: 1px solid #f78c00;
+      border-radius: 6px;
+      padding: 15px;
+      font-size: 0.95em;
+      color: #333;
+      text-align: justify;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-width: 250px;
+    }
+
+    .signature-line {
+      margin-top: 40px;
+      text-align: center;
+      font-weight: normal;
+    }
+
+    /* Estilos específicos para impressão em A4 */
+    @media print {
+      /* Remove fundo para economizar tinta */
+      body, html {
+        background: white !important;
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        /* Força o tamanho exato A4 */
+        width: 210mm;
+        height: 297mm;
+        max-width: 210mm;
+        max-height: 297mm;
+        border: none;
+        border-radius: 0;
+        padding: 15mm 15mm 15mm 15mm;
+        box-sizing: border-box;
+        overflow: visible;
+        background: white;
+      }
+      /* Remove imagem de fundo na impressão */
+      body {
+        background-image: none !important;
+      }
+      /* Ajusta fonte para melhor legibilidade */
+      label, input, .section-title, h1 {
+        color: black !important;
+        font-size: 12pt;
+      }
+      input[type="text"],
+      input[type="date"],
+      input[type="tel"] {
+        border: 1px solid #000 !important;
+        background: #fff !important;
+        padding: 4px;
+        font-size: 11pt;
+      }
+      .form-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+      .section {
+        background: white !important;
+        border: 1px solid #000 !important;
+        padding: 10px !important;
+        margin-top: 10px !important;
+      }
+      .checkbox-group label {
+        font-weight: normal !important;
+        color: black !important;
+      }
+      .notice-box {
+        border: 1px solid #000 !important;
+        background: white !important;
+        padding: 10px !important;
+        font-size: 11pt !important;
+      }
+      .signature-line {
+        margin-top: 20px !important;
+      }
+      /* Evita quebra de página dentro das seções */
+      .section {
+        page-break-inside: avoid;
+      }
+      /* Remove barra de rolagem e overflow no container */
+      .container {
+        overflow: visible !important;
+        max-height: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Planejamento de Instalação de Equipamentos - DTF</h1>
+
+    <div class="section form-grid">
+      <div>
+        <label>Equipamento:</label>
+        <input type="text" />
+      </div>
+      <div>
+        <label>Previsão de Chegada do Equipamento:</label>
+        <input type="date" />
+      </div>
+
+      <div class="full-width checkbox-group">
+        <label>Frete:</label>
+        <label><input type="checkbox" /> CIF</label>
+        <label><input type="checkbox" /> FOB</label>
+      </div>
+
+      <div class="full-width checkbox-group">
+        <label>Transporte:</label>
+        <label><input type="checkbox" /> Nosso carro</label>
+        <label><input type="checkbox" /> Transportadora</label>
+        <label><input type="checkbox" /> Cliente retirou</label>
+      </div>
+
+      <div>
+        <label>Data de Início:</label>
+        <input type="date" />
+      </div>
+      <div>
+        <label>Previsão de Término:</label>
+        <input type="date" />
+      </div>
+
+      <div>
+        <label>Data de Emissão da NF (Equipamento):</label>
+        <input type="date" />
+      </div>
+      <div>
+        <label>Data de Emissão da NF (Consumíveis):</label>
+        <input type="date" />
+      </div>
+    </div>
+
+    <div class="section form-grid">
+      <div class="section-title">Consumíveis e Acessórios</div>
+
+      <div class="full-width">
+        <label>Consumíveis e Acessórios p/ Start da Instalação:</label>
+      </div>
+      <div class="full-width checkbox-group">
+        <label><input type="checkbox" /> Cabeça de Impressão (I3200 / XP600)</label>
+        <label><input type="checkbox" /> Tintas (CMYK)</label>
+        <label><input type="checkbox" /> Tintas Especiais (RGBO / Fluor / LC e LM)</label>
+        <label><input type="checkbox" /> Filmes (Hotpeel / Instapeel)</label>
+        <label><input type="checkbox" /> Filmes Especiais</label>
+        <label><input type="checkbox" /> Pó de Fusão (Poliamida)</label>
+        <label><input type="checkbox" /> Solução de Limpeza</label>
+      </div>
+
+      <div class="full-width">
+        <label>Responsável por Pedido de Consumíveis:</label>
+        <input type="text" />
+      </div>
+
+      <div class="full-width checkbox-group">
+        <label><input type="checkbox" /> Enviado junto com equipamento</label>
+        <label><input type="checkbox" /> Enviado posteriormente</label>
+        <label><input type="checkbox" /> Levando na viagem</label>
+      </div>
+    </div>
+
+    <div class="section form-grid">
+      <div>
+        <label>Vendedor Responsável pela Venda:</label>
+        <input type="text" />
+      </div>
+
+      <div>
+        <label>Técnico Responsável pela Instalação:</label>
+        <input type="text" />
+      </div>
+    </div>
+
+    <div class="section form-grid">
+      <div class="section-title">Dados do Cliente</div>
+
+      <div>
+        <label>Razão Social:</label>
+        <input type="text" />
+      </div>
+
+      <div>
+        <label>Nome Fantasia:</label>
+        <input type="text" />
+      </div>
+
+      <div>
+        <label>Contato:</label>
+        <input type="text" />
+      </div>
+
+      <div>
+        <label>Telefone/WhatsApp:</label>
+        <input type="tel" />
+      </div>
+
+      <div class="full-width">
+        <label>Endereço:</label>
+        <input type="text" />
+      </div>
+
+      <div>
+        <label>Cidade:</label>
+        <input type="text" />
+      </div>
+
+      <div>
+        <label>UF:</label>
+        <input type="text" />
+      </div>
+    </div>
+
+    <div class="section">
+      <label style="font-weight: bold; color: #d35400;">Condições de Instalação - DTF:</label>
+      <div class="installation-conditions-container">
+        <div class="conditions-list checkbox-group">
+          <label><input type="checkbox" /> AR-CONDICIONADO INSTALADO</label><br />
+          <label><input type="checkbox" /> SALA FECHADA</label><br />
+          <label><input type="checkbox" /> EXAUSTOR</label><br />
+          <label><input type="checkbox" /> NOBREAK – CAPACIDADE 30% MAIOR QUE AMPERAGEM DA IMPRESSORA</label><br />
+          <label><input type="checkbox" /> ATERRAMENTO</label><br />
+          <label><input type="checkbox" /> COMPUTADOR</label><br />
+          <label><input type="checkbox" /> UMIDIFICADOR DE AMBIENTE</label><br />
+          <label><input type="checkbox" /> ADAPTADOR USB GIGABIT</label><br />
+          <label><input type="checkbox" /> ENERGIA 220V MONOFÁSICO COM CABO 6mm PARA FORNO</label>
+        </div>
+        <div class="notice-box">
+          <strong>Aviso Técnico:</strong><br />
+          Todos os requisitos descritos ao lado devem estar previamente providenciados e alinhados com a equipe técnica da Agabê. A ausência de qualquer item compromete a execução adequada da instalação e a integridade dos equipamentos. Nessas condições, a Agabê se isenta de qualquer responsabilidade técnica e contratual quanto à garantia e ao desempenho dos equipamentos instalados.
+          <p class="signature-line">
+            _______________________________________________<br />
+            Assinatura do cliente responsável
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
